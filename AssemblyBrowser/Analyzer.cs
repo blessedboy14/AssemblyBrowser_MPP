@@ -18,10 +18,17 @@ namespace AssemblyAnalyzer
                 currAssembly = Assembly.LoadFrom(path);
             } catch
             {
-                throw new Exception("Failed to load assembly");
+                throw new AnalyzerException("Failed to load assembly");
             }
             AnalyzerResult assemblyInfo = new AnalyzerResult(currAssembly.GetName().FullName);
-            Type[] types = currAssembly.GetTypes();
+            Type[] types;
+            try
+            {
+                types = currAssembly.GetTypes();
+            } catch(ReflectionTypeLoadException e)
+            {
+                throw new AnalyzerException("Type load exception");
+            }
             foreach (Type type in types)
             {
                 string nSpace = type.Namespace;

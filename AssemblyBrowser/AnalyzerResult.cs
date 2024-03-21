@@ -75,7 +75,7 @@ namespace AssemblyAnalyzer
                 this.methods.Add(new MethodInfo(
                     method.Name,
                     method.ReturnType.Name,
-                    method.GetParameters().Select(p => p.ParameterType.Name).ToList()
+                    String.Join(" ", method.GetParameters().Select(p => p.ParameterType.Name))
                 ));
             }
         }
@@ -85,9 +85,9 @@ namespace AssemblyAnalyzer
     {
         public string Name { get; set; }
         public string returnType { get; set; }
-        public List<string> paramTypes { get; set; }
+        public string paramTypes { get; set; }
 
-        public MethodInfo(string name, string returnType, List<string> paramTypes)
+        public MethodInfo(string name, string returnType, string paramTypes)
         {
             this.Name = name;
             this.returnType = returnType;

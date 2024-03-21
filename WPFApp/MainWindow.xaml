@@ -26,7 +26,7 @@
                                 <TreeViewItem ItemsSource="{Binding Path=TypeInfos}" Margin="-20,5,0,0">
                                     <TreeViewItem.Header>
                                         <StackPanel Orientation="Horizontal">
-                                            <Image Width="13" Height="13" Source="D:\БГУИР\\5 семестр\СПП\Лаба3\archive.png" Margin="0,0,5,0"/>
+                                            <Image Width="15" Height="15" Source="D:\LABS\SPP\AssemblyBrowser\folder.png" Margin="0,0,5,0"/>
                                             <TextBlock Text="{Binding Path=namespaceName}"></TextBlock>
                                         </StackPanel>
                                     </TreeViewItem.Header>
@@ -35,14 +35,14 @@
                                             <TreeViewItem Margin="-20,5,0,0">
                                                 <TreeViewItem.Header>
                                                     <StackPanel Orientation="Horizontal">
-                                                        <Image Width="13" Height="13" Source="D:\БГУИР\\5 семестр\СПП\Лаба3\font.png" Margin="0,0,5,0"/>
+                                                        <Image Width="15" Height="15" Source="D:\LABS\SPP\AssemblyBrowser\apple.png" Margin="0,0,5,0"/>
                                                         <TextBlock Text="{Binding Path=type.Name}"></TextBlock>
                                                     </StackPanel>
                                                 </TreeViewItem.Header>
                                                 <TreeViewItem Margin="0,5,0,0" ItemsSource="{Binding Path=properties}">
                                                     <TreeViewItem.Header>
                                                         <StackPanel Orientation="Horizontal">
-                                                            <Image Width="13" Height="13" Source="D:\БГУИР\\5 семестр\СПП\Лаба3\settings.png" Margin="0,0,5,0"/>
+                                                            <Image Width="13" Height="13" Source="D:\LABS\SPP\AssemblyBrowser\banana.png" Margin="0,0,5,0"/>
                                                             <TextBlock Text="Properties"></TextBlock>
                                                         </StackPanel>
                                                     </TreeViewItem.Header>
@@ -63,7 +63,7 @@
                                                 <TreeViewItem Margin="0,5,0,0" ItemsSource="{Binding Path=fields}">
                                                     <TreeViewItem.Header>
                                                         <StackPanel Orientation="Horizontal">
-                                                            <Image Width="13" Height="13" Source="D:\БГУИР\\5 семестр\СПП\Лаба3\field.png" Margin="0,0,5,0"/>
+                                                            <Image Width="13" Height="13" Source="D:\LABS\SPP\AssemblyBrowser\pineapple.png" Margin="0,0,5,0"/>
                                                             <TextBlock Text="Fields"></TextBlock>
                                                         </StackPanel>
                                                     </TreeViewItem.Header>
@@ -84,7 +84,7 @@
                                                 <TreeViewItem Margin="0,5,0,0" ItemsSource="{Binding Path=methods}">
                                                     <TreeViewItem.Header>
                                                         <StackPanel Orientation="Horizontal">
-                                                            <Image Width="13" Height="13" Source="D:\БГУИР\\5 семестр\СПП\Лаба3\box.png" Margin="0,0,5,0"/>
+                                                            <Image Width="13" Height="13" Source="D:\LABS\SPP\AssemblyBrowser\dota-2.png" Margin="0,0,5,0"/>
                                                             <TextBlock Text="Methods"></TextBlock>
                                                         </StackPanel>
                                                     </TreeViewItem.Header>
@@ -93,11 +93,11 @@
                                                             <TreeViewItem Margin="-15,0,0,0">
                                                                 <TreeViewItem.Header>
                                                                     <StackPanel Orientation="Horizontal">
-                                                                        <TextBlock Foreground="Blue" Text="{Binding Path=returnType}"></TextBlock>
+                                                                        <TextBlock Foreground="Green" Text="{Binding Path=returnType}"></TextBlock>
                                                                         <TextBlock Text=" "></TextBlock>
                                                                         <TextBlock Text="{Binding Path=Name}"></TextBlock>
                                                                         <TextBlock Text="("></TextBlock>
-                                                                        <TextBlock Foreground="Green" Text="{Binding Path=paramTypes}"></TextBlock>
+                                                                        <TextBlock Foreground="Red" Text="{Binding Path=paramTypes}"></TextBlock>
                                                                         <TextBlock Text=")"></TextBlock>
                                                                     </StackPanel>
                                                                 </TreeViewItem.Header>
