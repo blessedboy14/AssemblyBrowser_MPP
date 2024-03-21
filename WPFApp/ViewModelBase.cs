@@ -41,7 +41,7 @@ namespace WPFApp
         public List<AssemblyViewModel> Assemblies
         {
             get { return _assemblies; }
-            set { _assemblies = value; OnPropertyChanged("AssemblyList"); }
+            set { _assemblies = value; OnPropertyChanged("Assemblies"); }
         }
 
         public ICommand ButtonClickCommand => new OnClickCommand(OpenFile);
