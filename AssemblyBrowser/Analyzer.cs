@@ -24,14 +24,15 @@ namespace AssemblyAnalyzer
             Type[] types = currAssembly.GetTypes();
             foreach (Type type in types)
             {
-                if (!(type.Namespace == null)) {
-                /*if (!type.IsDefined(typeof(CompilerGeneratedAttribute), false))*/
-                    if (type.Namespace != "System.Runtime.CompilerServices" && type.Namespace != "Microsoft.CodeAnalysis")
-                    {
-                        string Namespace = type.Namespace;
-                        NamespaceInfo info = assemblyInfo.namespaces.GetOrAdd(Namespace, new NamespaceInfo(Namespace));
-                        info.AddType(new TypeInfo(type));
-                    }
+                string nSpace = type.Namespace;
+                if (nSpace == null)
+                {
+                    nSpace = "Not presented";
+                }
+                if (nSpace != "System.Runtime.CompilerServices" && nSpace != "Microsoft.CodeAnalysis")
+                {
+                    NamespaceInfo info = assemblyInfo.namespaces.GetOrAdd(nSpace, new NamespaceInfo(nSpace));
+                    info.AddType(new TypeInfo(type));
                 }
             }
             return assemblyInfo;
