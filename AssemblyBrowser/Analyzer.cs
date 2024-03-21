@@ -16,7 +16,7 @@ namespace AssemblyAnalyzer
             try
             {
                 currAssembly = Assembly.LoadFrom(path);
-            } catch (Exception ex)
+            } catch
             {
                 throw new Exception("Failed to load assembly");
             }
@@ -29,7 +29,13 @@ namespace AssemblyAnalyzer
                 {
                     nSpace = "Not presented";
                 }
-                if (nSpace != "System.Runtime.CompilerServices" && nSpace != "Microsoft.CodeAnalysis")
+                try
+                {   
+                    if (type.GetCustomAttribute<CompilerGeneratedAttribute>() == null)
+                    {
+                        assemblyInfo.AddType(type, nSpace);
+                    }
+                } catch (FileNotFoundException ex)
                 {
                     assemblyInfo.AddType(type, nSpace);
                 }
