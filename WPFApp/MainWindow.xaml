@@ -3,10 +3,118 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WPFApp"
+        xmlns:local="clr-namespace:WPFApp" d:DataContext="{d:DesignInstance Type=local:MainWindowViewModel}"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150*"/>
+            <RowDefinition Height="67*"/>
+        </Grid.RowDefinitions>
+        <TreeView x:Name="_treeView" Grid.RowSpan="2" Margin="245,0,0,0" ItemsSource="{Binding Assemblies}">
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate>
+                    <TreeViewItem ItemsSource="{Binding Path=Result.Namespaces}" Margin="-20,5,0,0" Focusable="False">
+                        <TreeViewItem.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Width="15" Height="15" Source="D:\LABS\SPP\AssemblyBrowser\header.png" Margin="0,0,5,0"/>
+                                <TextBlock Text="{Binding Path=Result.AssemblyName}"></TextBlock>
+                            </StackPanel>
+                        </TreeViewItem.Header>
+                        <TreeViewItem.ItemTemplate>
+                            <HierarchicalDataTemplate>
+                                <TreeViewItem ItemsSource="{Binding Path=TypeInfos}" Margin="-20,5,0,0">
+                                    <TreeViewItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Width="13" Height="13" Source="D:\БГУИР\\5 семестр\СПП\Лаба3\archive.png" Margin="0,0,5,0"/>
+                                            <TextBlock Text="{Binding Path=namespaceName}"></TextBlock>
+                                        </StackPanel>
+                                    </TreeViewItem.Header>
+                                    <TreeViewItem.ItemTemplate>
+                                        <HierarchicalDataTemplate>
+                                            <TreeViewItem Margin="-20,5,0,0">
+                                                <TreeViewItem.Header>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <Image Width="13" Height="13" Source="D:\БГУИР\\5 семестр\СПП\Лаба3\font.png" Margin="0,0,5,0"/>
+                                                        <TextBlock Text="{Binding Path=type.Name}"></TextBlock>
+                                                    </StackPanel>
+                                                </TreeViewItem.Header>
+                                                <TreeViewItem Margin="0,5,0,0" ItemsSource="{Binding Path=properties}">
+                                                    <TreeViewItem.Header>
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <Image Width="13" Height="13" Source="D:\БГУИР\\5 семестр\СПП\Лаба3\settings.png" Margin="0,0,5,0"/>
+                                                            <TextBlock Text="Properties"></TextBlock>
+                                                        </StackPanel>
+                                                    </TreeViewItem.Header>
+                                                    <TreeViewItem.ItemTemplate>
+                                                        <HierarchicalDataTemplate>
+                                                            <TreeViewItem Margin="-15,0,0,0">
+                                                                <TreeViewItem.Header>
+                                                                    <StackPanel Orientation="Horizontal">
+                                                                        <TextBlock Foreground="Blue" Text="{Binding Path=PropertyType.Name}"></TextBlock>
+                                                                        <TextBlock Text=" "></TextBlock>
+                                                                        <TextBlock Text="{Binding Path=Name}"></TextBlock>
+                                                                    </StackPanel>
+                                                                </TreeViewItem.Header>
+                                                            </TreeViewItem>
+                                                        </HierarchicalDataTemplate>
+                                                    </TreeViewItem.ItemTemplate>
+                                                </TreeViewItem>
+                                                <TreeViewItem Margin="0,5,0,0" ItemsSource="{Binding Path=fields}">
+                                                    <TreeViewItem.Header>
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <Image Width="13" Height="13" Source="D:\БГУИР\\5 семестр\СПП\Лаба3\field.png" Margin="0,0,5,0"/>
+                                                            <TextBlock Text="Fields"></TextBlock>
+                                                        </StackPanel>
+                                                    </TreeViewItem.Header>
+                                                    <TreeViewItem.ItemTemplate>
+                                                        <HierarchicalDataTemplate>
+                                                            <TreeViewItem Margin="-15,0,0,0">
+                                                                <TreeViewItem.Header>
+                                                                    <StackPanel Orientation="Horizontal">
+                                                                        <TextBlock Foreground="Blue" Text="{Binding Path=FieldType.Name}"></TextBlock>
+                                                                        <TextBlock Text=" "></TextBlock>
+                                                                        <TextBlock Text="{Binding Path=Name}"></TextBlock>
+                                                                    </StackPanel>
+                                                                </TreeViewItem.Header>
+                                                            </TreeViewItem>
+                                                        </HierarchicalDataTemplate>
+                                                    </TreeViewItem.ItemTemplate>
+                                                </TreeViewItem>
+                                                <TreeViewItem Margin="0,5,0,0" ItemsSource="{Binding Path=methods}">
+                                                    <TreeViewItem.Header>
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <Image Width="13" Height="13" Source="D:\БГУИР\\5 семестр\СПП\Лаба3\box.png" Margin="0,0,5,0"/>
+                                                            <TextBlock Text="Methods"></TextBlock>
+                                                        </StackPanel>
+                                                    </TreeViewItem.Header>
+                                                    <TreeViewItem.ItemTemplate>
+                                                        <HierarchicalDataTemplate>
+                                                            <TreeViewItem Margin="-15,0,0,0">
+                                                                <TreeViewItem.Header>
+                                                                    <StackPanel Orientation="Horizontal">
+                                                                        <TextBlock Foreground="Blue" Text="{Binding Path=returnType}"></TextBlock>
+                                                                        <TextBlock Text=" "></TextBlock>
+                                                                        <TextBlock Text="{Binding Path=Name}"></TextBlock>
+                                                                        <TextBlock Text="("></TextBlock>
+                                                                        <TextBlock Foreground="Green" Text="{Binding Path=paramTypes}"></TextBlock>
+                                                                        <TextBlock Text=")"></TextBlock>
+                                                                    </StackPanel>
+                                                                </TreeViewItem.Header>
+                                                            </TreeViewItem>
+                                                        </HierarchicalDataTemplate>
+                                                    </TreeViewItem.ItemTemplate>
+                                                </TreeViewItem>
+                                            </TreeViewItem>
+                                        </HierarchicalDataTemplate>
+                                    </TreeViewItem.ItemTemplate>
+                                </TreeViewItem>
+                            </HierarchicalDataTemplate>
+                        </TreeViewItem.ItemTemplate>
+                    </TreeViewItem>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+        <Button Command="{Binding ButtonClickCommand}" Content="Добавить сборку" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="50" Width="230"/>
     </Grid>
 </Window>

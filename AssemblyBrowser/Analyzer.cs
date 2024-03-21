@@ -31,11 +31,23 @@ namespace AssemblyAnalyzer
                 }
                 if (nSpace != "System.Runtime.CompilerServices" && nSpace != "Microsoft.CodeAnalysis")
                 {
-                    NamespaceInfo info = assemblyInfo.namespaces.GetOrAdd(nSpace, new NamespaceInfo(nSpace));
-                    info.AddType(new TypeInfo(type));
+                    assemblyInfo.AddType(type, nSpace);
                 }
             }
             return assemblyInfo;
         }
     }
+
+    [Serializable]
+    public class AnalyzerException: Exception 
+    {
+        public AnalyzerException() { }
+
+        public AnalyzerException(string message) : base(message)
+        {
+
+        }
+
+    }
+
 }

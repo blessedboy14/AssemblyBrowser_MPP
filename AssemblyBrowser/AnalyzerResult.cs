@@ -5,17 +5,28 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace AssemblyAnalyzer
 {
     public class AnalyzerResult
     {
         public string AssemblyName { get; set; }
-        public ConcurrentDictionary<string, NamespaceInfo> namespaces { get; set; }   
+        public ICollection<NamespaceInfo> Namespaces {
+            get => _namesapces.Values;
+        }
+        public ConcurrentDictionary<string, NamespaceInfo> NamespacesDictionary { get => _namesapces; }
+
+        private ConcurrentDictionary<string, NamespaceInfo> _namesapces;
+        public void AddType(Type type, string nSpace)
+        {
+            NamespaceInfo nsp = _namesapces.GetOrAdd(nSpace, new NamespaceInfo(nSpace));
+            nsp.AddType(new TypeInfo(type));
+        }
         public AnalyzerResult(string assemblyName)
         {
             this.AssemblyName = assemblyName;
-            namespaces = new ConcurrentDictionary<string, NamespaceInfo>();
+            _namesapces = new();
         }
     }
 
@@ -23,6 +34,10 @@ namespace AssemblyAnalyzer
     {
         public string namespaceName { get; set; }
         public List<TypeInfo> typeInfos { get; set; }
+        public List<TypeInfo> TypeInfos
+        {
+            get => typeInfos;
+        }
         public NamespaceInfo(string namespaceName)
         {
             this.namespaceName = namespaceName;
